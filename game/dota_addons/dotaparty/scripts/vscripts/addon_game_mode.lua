@@ -1,6 +1,5 @@
 -- Generated from template
 local playersIn = {}
-local icon = Entities:CreateByClassname("prop_dynamic")
 
 if DotaParty == nil then
 	DotaParty = class({})
@@ -14,8 +13,7 @@ function Precache( context )
 			PrecacheResource( "particle", "*.vpcf", context )
 			PrecacheResource( "particle_folder", "particles/folder", context )
 	]]
-	PrecacheResource( "model", "models/items/ember_spirit/ember_hat/ember_hat.vmdl", context)
-
+		PrecacheResource( "model", "models/heroes/pedestal/effigy_pedestal_ti5.vmdl", context )
 end
 -- Create the game mode when we activate
 function Activate()
@@ -24,21 +22,18 @@ function Activate()
 end
 
 function DotaParty:OnNPCSpawned( keys )
-	  		 wingsModel = "models/items/ember_spirit/ember_hat/ember_hat.vmdl"
 
-		local npc = EntIndexToHScript(keys.entindex)
+	local npc = EntIndexToHScript(keys.entindex)
 
-	playersIn[PlayerResource:GetPlayerName(npc:GetPlayerOwnerID())] = true
-	print("THE VALUE ", playersIn[PlayerResource:GetPlayerName(npc:GetPlayerOwnerID())], " WHO IT IS ", PlayerResource:GetPlayerName(npc:GetPlayerOwnerID()) )
-	if npc:IsRealHero() and playersIn[PlayerResource:GetPlayerName(npc:GetPlayerOwnerID())] ~= nil and playersIn[PlayerResource:GetPlayerName(npc:GetPlayerOwnerID())] == true then
-
-  	 	 icon:SetModel(wingsModel)
-  	 	 icon:SetParent(npc:GetRootMoveParent(), "attach_hitloc")
-   		-- icon:SetOrigin(Vector(0, 0, 18))
-   		 icon:SetModelScale(1.50)
+	if  npc:GetUnitName() == "npc_dota_blue_space" then
+		npc:SetRenderColor(0,0,1000)
 
 	end
- 
+
+ 	if  npc:GetUnitName() == "npc_dota_red_space" then
+		npc:SetRenderColor(1000,0,0)
+
+	end
 end
 
 function DotaParty:InitGameMode()
@@ -49,27 +44,9 @@ function DotaParty:InitGameMode()
 	GameRules:GetGameModeEntity():SetFixedRespawnTime(0.0)
 	ListenToGameEvent('npc_spawned', Dynamic_Wrap(DotaParty, 'OnNPCSpawned'), self)
 
-Convars:RegisterCommand( "setIonA", function(scale)
-
-    local cmdPlayer = Convars:GetCommandClient()
-    if cmdPlayer then
-    	
-        return icon:SetModelScale(scale)
-
-    end
-end, "a", 0 )
 
 
-Convars:RegisterCommand( "setIonB", function(x,y,z)
 
-    local cmdPlayer = Convars:GetCommandClient()
-    if cmdPlayer then
-    	
-        return icon:SetOrigin(Vector(tonumber(x), tonumber(y), tonumber(z)))
-
-
-    end
-end, "a", 0 )
 
 end
 
