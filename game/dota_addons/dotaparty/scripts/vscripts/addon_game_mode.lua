@@ -40,7 +40,7 @@ end
 
 function RollDice(eventSourceIndex, args)
 
-	print(args['roller'], " is rolling the dice")
+	print(args['roller'], " has rolled ", math.random(1,10))
 
 end
 
