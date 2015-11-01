@@ -1,5 +1,6 @@
 -- Generated from template
 local playersIn = {}
+local rollers = {}
 
 if DotaParty == nil then
 	DotaParty = class({})
@@ -36,6 +37,13 @@ function DotaParty:OnNPCSpawned( keys )
 	end
 end
 
+
+function RollDice(eventSourceIndex, args)
+
+	print(args['roller'], " is rolling the dice")
+
+end
+
 function DotaParty:InitGameMode()
 	GameRules:GetGameModeEntity():SetThink( "OnThink", self, "GlobalThink", 2 )
 	--GameRules:GetGameModeEntity():SetCustomGameForceHero("npc_dota_hero_wisp")
@@ -43,6 +51,7 @@ function DotaParty:InitGameMode()
 	GameRules:GetGameModeEntity():SetBuybackEnabled(false)
 	GameRules:GetGameModeEntity():SetFixedRespawnTime(0.0)
 	ListenToGameEvent('npc_spawned', Dynamic_Wrap(DotaParty, 'OnNPCSpawned'), self)
+	CustomGameEventManager:RegisterListener( "rollDice", RollDice )
 
 
 

@@ -1,0 +1,17 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/dota_party_style.css" />
+	</styles>
+
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/dota_party_script.js" />
+	</scripts>
+
+
+	<Panel hittest="false">
+
+		
+
+	</Panel>
+
+</root>

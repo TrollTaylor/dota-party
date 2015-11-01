@@ -46,6 +46,7 @@
         "CombatClassDefend"         "DOTA_COMBAT_CLASS_DEFEND_BASIC"
         "UnitRelationshipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
     }	
+
     "npc_dota_blue_space"
     {
      
@@ -90,47 +91,4 @@
         "UnitRelationshipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
     }
 
-	"npc_dota_blue_space"
-    {
-     
-        "BaseClass"                 "npc_dota_creature"
-        "Model"                     "models/heroes/pedestal/effigy_pedestal_ti5.vmdl"    // Model.
-        "SoundSet"                  "n_creep_Ranged"
-        "GameSoundsFile"            "soundevents/game_sounds_creeps.vsndevts"
-        "Level"                     "1"
-        "ModelScale"                "0.85"
-        "MinimapIconSize"           "0"
-        "MinimapIcon"               ""
-
-        "AbilityLayout"             "6"
-        "Ability1"                  "pedestal_collisionfix"        
-        "Ability2"                  ""     
-        "Ability3"                  ""         
-        "Ability4"                  ""         
-
-        	
-        "ArmorPhysical"             "100"         
-       
-        "AttackCapabilities"        "DOTA_UNIT_CAP_NO_ATTACK"
-        "AttackDamageMin"           "0"     
-        "AttackDamageMax"           "0"    
-
-      
-        "RingRadius"                "40"
-        "HealthBarOffset"           "170"
-
-       
-        "MovementCapabilities"      "DOTA_UNIT_CAP_MOVE_NONE"           
-        "MovementSpeed"             "0"         
-
-        "StatusHealth"              "1000"      
-        "StatusHealthRegen"         "800"       
-        "StatusMana"                "0"       
-        "StatusManaRegen"           "0.0"      
-
-        "TeamName"                  "DOTA_TEAM_NEUTRALS"                       
-        "CombatClassAttack"         "DOTA_COMBAT_CLASS_ATTACK_PIERCE"
-        "CombatClassDefend"         "DOTA_COMBAT_CLASS_DEFEND_BASIC"
-        "UnitRelationshipClass"     "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_DEFAULT"
-    }
 }

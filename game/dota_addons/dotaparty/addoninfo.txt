@@ -1,3 +1,27 @@
 "AddonInfo"
 {
+
+  "TeamCount" "5"
+  "maps"      "untitled_1"
+  "IsPlayable"  "1"
+  "untitled_1"
+  {
+          "MaxPlayers"                    "5"
+  }
+
+	"Default_Keys"
+	{
+
+		"01"
+		{
+
+			"Key"		"SPACE"	
+			"Command"	"DiceRoll"
+			"Name"		"Dice Roll"
+  
+
+		}
+	}
+
+
 }
