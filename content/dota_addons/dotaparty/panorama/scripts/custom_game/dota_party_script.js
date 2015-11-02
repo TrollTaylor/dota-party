@@ -4,8 +4,9 @@
 function buttonPress()
 {
 
+	GameEvents.SendCustomGameEventToServer( "rollDice", { "roller" : Players.GetLocalPlayer() } );
 
-	$.Msg("Yep");
+
 
 }	
 
