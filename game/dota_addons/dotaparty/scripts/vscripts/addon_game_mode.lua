@@ -1,6 +1,8 @@
 -- Generated from template
 local playersIn = {}
-
+local rollers = {}
+local playersSpaces = {}
+--local space = nil
 if DotaParty == nil then
 	DotaParty = class({})
 end
@@ -27,12 +29,46 @@ function DotaParty:OnNPCSpawned( keys )
 
 	if  npc:GetUnitName() == "npc_dota_blue_space" then
 		npc:SetRenderColor(0,0,1000)
+		space = npc
 
 	end
 
  	if  npc:GetUnitName() == "npc_dota_red_space" then
 		npc:SetRenderColor(1000,0,0)
 
+	end
+end
+function tablelength(T)
+  local count = 0
+  for _ in pairs(T) do count = count + 1 end
+  return count
+end
+
+
+function RollDice(eventSourceIndex, args)	
+	local player = PlayerResource:GetPlayer(args['roller']) 
+	local space = FindUnitsInRadius(DOTA_TEAM_NEUTRALS, PlayerResource:GetSelectedHeroEntity(args['roller']):GetOrigin(), nil, 1000, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_CREEP, DOTA_UNIT_TARGET_FLAG_NONE, FIND_CLOSEST, false)
+	local roll =  math.random(1,10)
+	print("roll = ", roll)
+	playersSpaces[player] = 1
+	for i = 1, roll do 
+
+		--print(space[i]:GetOrigin())
+		print(space[i]:GetDebugName())
+				--print(space[i]:GetDebugName(), " equaled I")
+				
+					print("yeye")
+ 		local order = {
+            UnitIndex = PlayerResource:GetSelectedHeroEntity(args['roller']):GetEntityIndex(),
+            OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
+            Position = space[playersSpaces[player] + i]:GetOrigin(),
+            Queue = true
+        }
+        ExecuteOrderFromTable(order)
+				playersSpaces[player] = playersSpaces[player] + roll
+				print("space = ", playersSpaces[player])
+		
+		
 	end
 end
 
@@ -43,6 +79,7 @@ function DotaParty:InitGameMode()
 	GameRules:GetGameModeEntity():SetBuybackEnabled(false)
 	GameRules:GetGameModeEntity():SetFixedRespawnTime(0.0)
 	ListenToGameEvent('npc_spawned', Dynamic_Wrap(DotaParty, 'OnNPCSpawned'), self)
+	CustomGameEventManager:RegisterListener( "rollDice", RollDice )
 
 
 
